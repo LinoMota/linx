@@ -1,0 +1,54 @@
+$carousel-min-weight: $product-item-width * 4 + (4* $product-item-margin-left);
+$carousel-button-bg: $soft-tranparency;
+$carousel-button-size: 40px;
+
+.card {
+  &__title {
+    color: $accent-color;
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  &__carousel {
+    width: $carousel-min-weight;
+    position: relative;
+
+    &__content {
+      display: flex;
+      flex-flow: row nowrap;
+      max-width: $carousel-min-weight;
+      overflow: hidden;
+    }
+
+    &__btn {
+      position: absolute;
+      font-size: 1.5rem;
+      padding: 5px;
+      color: $arrow-color;
+      z-index: 2;
+      top: $product-item-height/2 - 66px;
+      border: 0px solid $carousel-button-bg;
+      border-radius: 50%;
+      width: $carousel-button-size;
+      height: $carousel-button-size;
+      font-weight: bolder;
+      margin: auto;
+      outline: none;
+    }
+
+    &__btn:nth-child(1) {
+      left: 0;
+    }
+
+    &__btn:nth-child(2) {
+      right: 0;
+    }
+  }
+}
+
+// <div class="card">
+// <h1 class="card__title"></h1>
+// <div class="card__carousel">
+//     Carousel
+// </div>
+// </div>

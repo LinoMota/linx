@@ -1,0 +1,16 @@
+@import "config";
+@import "colors";
+@import "font";
+@import "product";
+@import "card";
+
+
+$bg: white;
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "dosis", sans-serif;
+//   height: 100vh;
+}
