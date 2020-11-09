@@ -1,15 +1,20 @@
 import Product from "../models/product.js";
 
 const mainEndpoint = async (req, res) => {
-    const id = req.body.id
+    const id = req.body.id || null
     const format = req.body.format || "complete"
 
     try {
-        console.log(id)
+
+        if (id === null)
+            throw new Error("Nenhum id informado !")
 
         const product = await Product.findOne({
             id: id
         });
+
+        if (product == null)
+            throw new Error(`Nenhum produto com o id ${id} foi encontrado !`);
 
         let response = product;
 
@@ -31,7 +36,7 @@ const mainEndpoint = async (req, res) => {
         res.status(200).json(response)
     } catch (e) {
         res.status(404).json({
-            message: "Produto inexistente."
+            message: e.message
         })
     }
 }

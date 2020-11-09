@@ -23,6 +23,7 @@ const CONNECTION_URL = process.env.CONNECTION_URL || "mongodb://127.0.0.1:27017/
 mongoose.set("useNewUrlParser", true)
 mongoose.set("useUnifiedTopology", true)
 mongoose.set("useFindAndModify", false)
+mongoose.set("autoIndex", false)
 
 mongoose.connect(CONNECTION_URL).then((res) => {
     console.log("Conectei no banco de dados");
