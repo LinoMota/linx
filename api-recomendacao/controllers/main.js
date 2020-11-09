@@ -21,7 +21,7 @@ function requestProductResolver(url, id) {
 
 async function getProductInfo(productIds, maxProducts) {
 
-    const url = process.env.API_CATALOG || "http://localhost:3334/products";
+    const url = process.env.API_CATALOG || "http://0.0.0.0:3334/products";
 
     let responseProducts = [];
     for (let i = 0, j = 0; i < maxProducts && j < productIds.length; j++) {

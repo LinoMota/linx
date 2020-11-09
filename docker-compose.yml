@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  api-catalago:
+    env_file: ./api-catalogo/.env
+
+    build:
+      dockerfile: "Dockerfile"
+      context: ./api-catalogo/.
+    image: api-catalogo
+
+    container_name: api-catalogo
+
+    ports:
+      - 3334:3334
+
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.4.1-bionic
+    env_file: ./api-catalogo/.env
+    container_name: mongo
+    ports:
+      - "27017:27017"
+
+  api-recomendacao:
+    env_file: ./api-recomendacao/.env
+    build:
+      dockerfile: "Dockerfile"
+      context: ./api-recomendacao/.
+    image: api-recomendacao
+    container_name: api-recomendacao
+    ports:
+      - 3335:3335
+
+  frontend-app:
+    env_file: ./frontend/.env
+    build:
+      dockerfile: "Dockerfile"
+      context: ./frontend/.
+    image: frontend-app
+    container_name: frontend-app
+    ports:
+      - 3333:3333

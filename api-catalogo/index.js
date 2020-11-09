@@ -8,7 +8,14 @@ import loadData from './dataLoader.js';
 
 import productRoutes from './routes/product.js';
 
-// Adicionar Variavel de ambiente
+const {
+    MONGO_USERNAME,
+    MONGO_PASSWORD,
+    MONGO_HOSTNAME,
+    MONGO_PORT,
+    MONGO_DB
+} = process.env;
+
 const PORT = process.env.PORT || 3334
 const app = express();
 
@@ -18,7 +25,7 @@ app.use(cors());
 
 app.use(productRoutes);
 
-const CONNECTION_URL = process.env.CONNECTION_URL || "mongodb://127.0.0.1:27017/?compressors=zlib&gssapiServiceName=mongodb"
+const CONNECTION_URL = `mongodb://localhost:27017/db` 
 
 mongoose.set("useNewUrlParser", true)
 mongoose.set("useUnifiedTopology", true)
@@ -31,14 +38,13 @@ mongoose.connect(CONNECTION_URL).then((res) => {
     console.log("Migrando os dados.");
 
     loadData().then(_ => {
-        console.log("Dados migrados !")
+        console.log("Dados migrados !");
 
         app.listen(PORT, _ => {
-            console.log(`Rodando na porta ${PORT}`)
-        })
-    })
-
+            console.log(`Rodando na porta ${PORT}`);
+        });
+    });
 
 }).catch((res) => {
-    console.log("Não pude conectar no banco de dados")
+    console.log("Não pude conectar no banco de dados");
 });
