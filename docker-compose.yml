@@ -33,6 +33,9 @@ services:
     ports:
       - 3335:3335
 
+    depends_on:
+      - api-catalago
+
   frontend-app:
     env_file: ./frontend/.env
     build:
@@ -42,3 +45,6 @@ services:
     container_name: frontend-app
     ports:
       - 3333:3333
+
+    depends_on:
+      - api-recomendacao

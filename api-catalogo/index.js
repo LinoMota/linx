@@ -1,20 +1,11 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cors from 'cors';
-
+import db from './db/db.js';
 import loadData from './dataLoader.js';
 
 import productRoutes from './routes/product.js';
-
-const {
-    MONGO_USERNAME,
-    MONGO_PASSWORD,
-    MONGO_HOSTNAME,
-    MONGO_PORT,
-    MONGO_DB
-} = process.env;
 
 const PORT = process.env.PORT || 3334
 const app = express();
@@ -25,14 +16,8 @@ app.use(cors());
 
 app.use(productRoutes);
 
-const CONNECTION_URL = `mongodb://localhost:27017/db` 
+db.then((res) => {
 
-mongoose.set("useNewUrlParser", true)
-mongoose.set("useUnifiedTopology", true)
-mongoose.set("useFindAndModify", false)
-mongoose.set("autoIndex", false)
-
-mongoose.connect(CONNECTION_URL).then((res) => {
     console.log("Conectei no banco de dados");
 
     console.log("Migrando os dados.");

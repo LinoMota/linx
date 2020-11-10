@@ -1,12 +1,8 @@
 import axios from 'axios';
 
-async function mostPopular() {
-    const url = process.env.MOST_POPULAR_URL || "https://wishlist.neemu.com/onsite/impulse-core/ranking/mostpopular.json";
-    return (await axios.get(url)).data;
-}
-
-async function priceReduction() {
-    const url = process.env.PRICE_REDUCTION_URL || "https://wishlist.neemu.com/onsite/impulse-core/ranking/pricereduction.json";
+async function externalApi(algo){
+    const endpoint = (algo === 'mostpopular') ? algo : 'pricereduction';
+    const url = `https://wishlist.neemu.com/onsite/impulse-core/ranking/${algo}.json`;
     return (await axios.get(url)).data;
 }
 
@@ -21,7 +17,8 @@ function requestProductResolver(url, id) {
 
 async function getProductInfo(productIds, maxProducts, discount = false) {
 
-    const url = process.env.API_CATALOG || "http://localhost:3334/products";
+    //comunicando com meu container 
+    const url = "http://api-catalogo:3334/products";
 
     let responseProducts = [];
     for (let i = 0, j = 0; i < maxProducts && j < productIds.length; j++) {
@@ -65,8 +62,8 @@ const mainEndpoint = (req, res) => {
     maxProducts = (maxProducts === undefined || maxProducts < 10) ? 10 : maxProducts;
 
     Promise.all([
-        mostPopular(),
-        priceReduction()
+        externalApi('mostpopular'),
+        externalApi('pricereduction')
     ]).then(responses => {
 
         let [popular, pReduction] = responses;
