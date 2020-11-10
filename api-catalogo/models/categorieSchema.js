@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const categorieSchema = mongoose.Schema({
+const categoriesSchema = mongoose.Schema({
     id: {
         type: String,
         index: true
@@ -9,4 +9,4 @@ const categorieSchema = mongoose.Schema({
     parents: [String]
 })
 
-export default categorieSchema;
+export default categoriesSchema;
