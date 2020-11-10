@@ -42,14 +42,14 @@ Desafio do processo seletivo da Linx, se trata da criação de 2 apis e de uma a
 Esta api foi desenvolvida com o simples propósito de buscar um produto recebendo seu id. Apresenta também a feature de recuperar informações de forma compacta e completa.
 
 ### Funcionamento
-Seu funcionamento se da através de primeiramente uma conexão no banco de dados, a migração dos dados via um arquivo json que foi fornecido no desafio, e por fim a disponibilidade do endpoint "/products/" que recebe sua consulta via body json.
+Seu funcionamento se da através de primeiramente uma conexão no banco de dados, a migração dos dados via um arquivo json que foi fornecido no desafio, e por fim a disponibilidade do endpoint "/products/" que recebe sua consulta de id via params e o seu format via body.
 
 exemplo de uso :
   ```
+  url : '/products/:id'
   RequestType : get
   headers : { "Content-Type" : "application/json" }
   requestBody : {
-    "id" : Number,
     "format" : "complete" || "compact"
   }
   
