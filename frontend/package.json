@@ -8,7 +8,7 @@
     "start": "webpack serve"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lino Mota",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.3",
