@@ -3,9 +3,18 @@
 Desafio do processo seletivo da Linx, se trata da criação de 2 apis e de uma aplicação frontend.
 
 ## Instruções de execução
+  1) criar um .env neste modelo :
+     ```
+     COMPOSE_CONVERT_WINDOWS_PATHS=1
 
-  * 1) docker-compose up --build 
-  * 2) acessar localhost:3333
+     API_CATALOGO_PORT=3334
+     API_RECOMENDACAO_PORT=3645
+     FRONTEND_PORT=3260
+
+     MONGO_PORT=27017
+     ```
+  2) docker-compose up  
+  3) acessar localhost:3260 (O port está apontando para o numero colocado no FRONTEND_PORT no .env )
 
 ## Escolhas
 
