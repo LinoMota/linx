@@ -1,7 +1,6 @@
 $product-item-width: 300px;
 $product-item-height: 400px;
 $product-item-info-font-size: 1rem;
-$product-item-margin-left: 5px;
 
 @mixin info {
   position: absolute;
@@ -10,7 +9,6 @@ $product-item-margin-left: 5px;
 }
 
 .product {
-  margin-left: $product-item-margin-left;
   width: $product-item-width;
   height: $product-item-height;
   position: relative;
@@ -35,6 +33,11 @@ $product-item-margin-left: 5px;
   &__image {
     width: $product-item-width;
     height: $product-item-width;
+    padding: 20px;
+    img{
+      height: 100%;
+      width: 100%;
+    }
   }
 
   &__info {

@@ -19,17 +19,36 @@ function requestProductResolver(url, id) {
     })
 }
 
-async function getProductInfo(productIds, maxProducts) {
+async function getProductInfo(productIds, maxProducts, discount = false) {
 
-    const url = process.env.API_CATALOG || "http://0.0.0.0:3334/products";
+    const url = process.env.API_CATALOG || "http://api-catalago:3334/products";
 
     let responseProducts = [];
     for (let i = 0, j = 0; i < maxProducts && j < productIds.length; j++) {
         await requestProductResolver(url, productIds[j]).then((res) => {
-            responseProducts.push(res.data)
-            i++;
+            if (discount) {
+
+                let {
+                    oldPrice,
+                    price
+                } = res.data
+
+                if (price < oldPrice) {
+                    responseProducts.push(res.data)
+                    i++;
+                }
+
+
+            } else {
+                responseProducts.push(res.data)
+                i++;
+            }
         }).catch(error => {})
     }
+
+    responseProducts = (responseProducts.length > 0) ?
+        responseProducts.sort(((item, other) => (item.weight > other.weight) ? 1 : -1 )) : []
+
     return responseProducts;
 }
 
@@ -41,7 +60,7 @@ function arrayIdFilter(productRecomendationArray) {
 const mainEndpoint = (req, res) => {
     let {
         maxProducts
-    } = req.body
+    } = req.query
 
     maxProducts = (maxProducts === undefined || maxProducts < 10) ? 10 : maxProducts;
 
@@ -57,7 +76,7 @@ const mainEndpoint = (req, res) => {
 
         Promise.all([
             getProductInfo(popular, maxProducts),
-            getProductInfo(pReduction, maxProducts)
+            getProductInfo(pReduction, maxProducts, true)
         ]).then(_responses => {
 
             let [popular, pReduction] = _responses;
@@ -70,7 +89,6 @@ const mainEndpoint = (req, res) => {
         })
 
     }).catch(error => {
-        console.log(error)
         res.status(404).json({
             message: error.message
         })

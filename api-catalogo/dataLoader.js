@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
 import fs from 'fs';
+import mongoose from 'mongoose';
 import path from 'path';
-import product from './models/product.js';
+import productSchema from './models/product.js';
 
 export default async function loadData() {
 
@@ -10,20 +10,22 @@ export default async function loadData() {
 
     let dados = fs.readFileSync(filePath, 'utf-8')
 
+    // ajustar para DAO
+    const productModel = mongoose.Model(productSchema,'product')
+
     dados.split('\n').forEach(async (line, i) => {
         try {
 
             if (line.trim() != '') {
                 let json = JSON.parse(line);
 
-                let dado = new product({
+                let dado = new productModel({
                     ...json
                 });
-            
-                await dado.save()
+
+                await productModel.save()
             }
         } catch (e) {
-            console.log(e)
             console.log("Não é um json válido !");
         }
     });

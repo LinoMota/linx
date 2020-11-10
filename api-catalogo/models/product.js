@@ -1,26 +1,6 @@
 import mongoose from 'mongoose';
-
-
-const categoriesSchema = mongoose.Schema({
-    id: {
-        type: String,
-        index: true
-    },
-    name: String,
-    parents: [String]
-})
-
-
-const skuSchema = mongoose.Schema({
-    sku: {
-        type: String,
-        index: true
-    },
-    specs: Object,
-    properties: Object,
-    customBusiness: Object
-
-});
+import categorieSchema from './categorieSchema.js';
+import skuSchema from './categorieSchema.js';
 
 const productSchema = mongoose.Schema({
     imagesSsl: {},
@@ -34,7 +14,7 @@ const productSchema = mongoose.Schema({
     price: Number,
     details: Object,
     remoteUrl: String,
-    categories: [categoriesSchema],
+    categories: [categorieSchema],
     id: {
         type: String,
         index: true
@@ -63,7 +43,6 @@ const productSchema = mongoose.Schema({
     ungroupedId: String
 });
 
-const model = mongoose.model('product', productSchema);
 
 
-export default model;
+export default productSchema;

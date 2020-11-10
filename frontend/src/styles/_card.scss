@@ -1,12 +1,15 @@
-$carousel-min-weight: $product-item-width * 4 + (4* $product-item-margin-left);
+$carousel-min-weight: $product-item-width * 4;
 $carousel-button-bg: $soft-tranparency;
 $carousel-button-size: 40px;
 
 .card {
+
+  min-height: 500px;
+
   &__title {
     color: $accent-color;
     text-align: center;
-    margin: 8px 0;
+    margin: 20px 0;
   }
 
   &__carousel {
