@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import categorieSchema from './categorieSchema.js';
-import skuSchema from './categorieSchema.js';
+import skuSchema from './skuSchema.js';
 
 const productSchema = mongoose.Schema({
     imagesSsl: {},

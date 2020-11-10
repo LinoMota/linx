@@ -1,8 +1,16 @@
 import express from 'express';
-import productController from '../controllers/product.js'
+import ProductController from '../controllers/ProductController.js'
 
-const routes = express.Router();
 
-routes.get('/products', productController.mainEndpoint);
+export default (() => {
 
-export default routes;
+    const routes = express.Router();
+
+    const controller = new ProductController();
+
+    routes.get('/products', (req, res) => {
+        controller.mainEndpoint(req, res)
+    });
+
+    return routes
+})()

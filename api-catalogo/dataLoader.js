@@ -1,8 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import product from './models/product.js';
+import productSchema from './models/productSchema.js'
+import ProductDAO from './controllers/ProductDAO.js'
 
 export default async function loadData() {
+
+    let productDAO = new ProductDAO();
 
     const filename = 'catalog.json';
     const filePath = path.join("./data/", filename);
@@ -15,14 +18,14 @@ export default async function loadData() {
             if (line.trim() != '') {
                 let json = JSON.parse(line);
 
-                let dado = new product({
+                let dado = new productSchema({
                     ...json
                 });
-            
-                await dado.save()
+
+                await productDAO.create(dado);
             }
         } catch (e) {
-
+            console.log(e)
             console.log("Não é um json válido !");
         }
     });
