@@ -8,7 +8,7 @@ export default (() => {
 
     const controller = new ProductController();
 
-    routes.get('/products', (req, res) => {
+    routes.get('/products/:id', (req, res) => {
         controller.mainEndpoint(req, res)
     });
 

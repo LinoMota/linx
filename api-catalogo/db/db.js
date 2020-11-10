@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 // Apontando para o container
 const CONNECTION_URL = `mongodb://mongo/db`
 

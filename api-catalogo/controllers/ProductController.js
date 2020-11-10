@@ -8,7 +8,7 @@ export default class ProductController {
 
 
     async mainEndpoint(req, res) {
-        const id = req.body.id || null
+        const id = req.params.id || null
         const format = req.body.format || "complete"
 
         try {

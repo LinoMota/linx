@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const API_CATALOGO_PORT = process.env.API_CATALOGO_PORT || 3334
+
 async function externalApi(algo){
     const endpoint = (algo === 'mostpopular') ? algo : 'pricereduction';
     const url = `https://wishlist.neemu.com/onsite/impulse-core/ranking/${algo}.json`;
@@ -7,9 +9,8 @@ async function externalApi(algo){
 }
 
 function requestProductResolver(url, id) {
-    return axios.get(url, {
+    return axios.get(`${url}/${id}` , {
         data: {
-            id: id,
             format: "complete"
         }
     })
@@ -18,7 +19,7 @@ function requestProductResolver(url, id) {
 async function getProductInfo(productIds, maxProducts, discount = false) {
 
     //comunicando com meu container 
-    const url = "http://api-catalogo:3334/products";
+    const url = `http://api-catalogo:${API_CATALOGO_PORT}/products`;
 
     let responseProducts = [];
     for (let i = 0, j = 0; i < maxProducts && j < productIds.length; j++) {
