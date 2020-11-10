@@ -88,7 +88,8 @@ exemplo de uso :
   }
   
   Retorno:
-    Sucesso : Um objeto que possui dois arrays de produtos se trata dos mais vendidos e os que baixaram o preço.
+    Sucesso : Um objeto que possui dois arrays de produtos se trata dos
+               mais vendidos e os que baixaram o preço.
     Erro :  Uma mensagem informando indisponibilidade da api de catálogo.
   ```
   
