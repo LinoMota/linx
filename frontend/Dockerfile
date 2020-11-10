@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm install && npm rebuild node-sass && npm run build
 
-EXPOSE 3333
+EXPOSE $FRONTEND_PORT
 
 CMD ["npm", "start"]

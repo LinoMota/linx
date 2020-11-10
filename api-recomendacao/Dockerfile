@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 3335
+EXPOSE $API_RECOMENDACAO_PORT
 
 CMD ["npm", "start"]

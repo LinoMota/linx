@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import router from './routes/router.js';
 
-const PORT = process.env.PORT || 3335;
+const PORT = process.env.API_RECOMENDACAO_PORT || 3335;
 const app = express();
 
 app.use(bodyParser.json());

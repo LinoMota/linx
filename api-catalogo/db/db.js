@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-    
 // Apontando para o container
-const CONNECTION_URL = `mongodb://mongo:27017/db`
+const CONNECTION_URL = `mongodb://mongo/db`
 
 export default (() => {
 

@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm install 
 
-EXPOSE 3334
+EXPOSE $API_CATALOGO_PORT
 
 CMD ["npm", "start"]

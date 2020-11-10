@@ -7,7 +7,7 @@ import loadData from './dataLoader.js';
 
 import productRoutes from './routes/product.js';
 
-const PORT = process.env.PORT || 3334
+const PORT = process.env.API_CATALOGO_PORT || 3334
 const app = express();
 
 app.use(bodyParser.json());

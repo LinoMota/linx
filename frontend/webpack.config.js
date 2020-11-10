@@ -1,7 +1,8 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const PORT = process.env.PORT || 3333;
+const webpack = require('webpack');
+const PORT = process.env.FRONTEND_PORT || 3333;
 
 module.exports = {
     devServer: {
@@ -44,6 +45,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
+        }),
+        new webpack.DefinePlugin({
+            API_RECOMENDACAO_PORT : process.env.API_RECOMENDACAO_PORT || 3335
         })
     ]
 }

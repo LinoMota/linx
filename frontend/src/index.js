@@ -1,6 +1,5 @@
 import './styles/main.scss';
 
-
 (() => {
 
     function scrollCarousel(element, leftValue) {
@@ -36,7 +35,8 @@ import './styles/main.scss';
 
     function getProductsData() {
         return new Promise((resolve, reject) => {
-            fetch('http://localhost:3335?maxProducts=16')
+            // Apontar para meu container
+            fetch(`http://host.docker.internal:${API_RECOMENDACAO_PORT}/?maxProducts=16`)
                 .then(res => res.json())
                 .then(data => resolve(data))
                 .catch(_ => reject("Api está indisponível"))
